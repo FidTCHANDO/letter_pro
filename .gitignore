@@ -1,2 +1,6 @@
 # Les elements a ne pas tracker
 test*.php
+styles/additional.css
+styles/es6*
+styles/html2*
+styles/p*

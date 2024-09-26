@@ -10,7 +10,10 @@
 
         if ($updt_con -> num_rows == 1) {
             $updat_data = $updt_con -> fetch_assoc();
-
+            $rep_sql = $conn -> query("SELECT * FROM substitutes WHERE id_rempl = $pin");
+            if ($rep_sql -> num_rows > 0) {
+                $get_rep = $rep_sql -> fetch_all(MYSQLI_ASSOC);
+                
 ?> 
 
 <!DOCTYPE html>
@@ -67,7 +70,7 @@
             </div>
         </div>
     </nav>
-    Message : <?php print_r($updat_data); ?>
+    Message : <?php print_r($get_rep); ?>
     <!-- Main part of the page -->
     <div class="container my-3 " id="mainpart">
     <div class="d-flex justify-centent-center">
@@ -209,7 +212,7 @@
                                 <label class="col-form-label" for="rempCount">Nombre de personnes remplacées:</label>
                             </div>
                             <div class="col-1">
-                                <input type="number" class="form-control" id="rempCount" value="1" name="rempCount" min="1" required>
+                                <input type="number" class="form-control" id="rempCount" value="<?= $updat_data["replaceCount"] ?>" name="rempCount" min="1" required>
                             </div>
                             <div class="col-auto">
                                 <button type="button" class="btn btn-success" onclick="generateInputs()">Générer</button>
@@ -318,6 +321,75 @@ CDN
                 
             }
         }
+        function getInputs() {
+            // Get the number of inputs to generate
+            var numberOfInputs = <?php echo $updat_data["replaceCount"] ?>;
+            var inputsContainer = document.getElementById('inputsContainer');
+            var remplCounter = document.getElementById('remplCounter');
+            var subs_json = <?php echo json_encode($get_rep); ?>
+            
+            remplCounter.value = numberOfInputs;
+            // Clear any existing inputs
+            inputsContainer.innerHTML = '';
+
+            // Generate the new inputs
+            for (var i = 0; i < numberOfInputs; i++) {
+                var remplist = document.createElement('input');
+                remplist.type = 'text';
+                remplist.name = 'rempl' + (i + 1);
+                remplist.classList.add("form-control", "my-1");
+                remplist.required = true;
+                // remplist.placeholder = 'NOM et Prénoms du remplacé N°' + (i + 1);
+                remplist.value = subs_json[i].subst_fullname ;
+
+                var funcremplist = document.createElement('input');
+                funcremplist.type = 'text';
+                funcremplist.name = 'funcrempl' + (i + 1);
+                funcremplist.classList.add("form-control");
+                funcremplist.required = true;
+                // funcremplist.placeholder = 'Fonction/Poste de l\'agent' + (i + 1);
+                funcremplist.value = subs_json[i].subst_function;
+
+                var replaceagent = document.createElement('input');
+                replaceagent.type = 'text';
+                replaceagent.name = 'replaceagent' + (i + 1);
+                replaceagent.classList.add("form-control", "my-1");
+                replaceagent.required = true;
+                // replaceagent.placeholder = 'NOM et Prénoms remplaçant N°' + (i + 1);
+                replaceagent.value = subs_json[i].new_fullname;
+
+                var funcreplaceagent = document.createElement('input');
+                funcreplaceagent.type = 'text';
+                funcreplaceagent.name = 'funcreplaceagent' + (i + 1);
+                funcreplaceagent.classList.add("form-control");
+                funcreplaceagent.required = true;
+                // funcreplaceagent.placeholder = 'Fonction/Poste de l\'agent' + (i + 1);
+                funcreplaceagent.value = subs_json[i].new_function;
+
+                var divrow = document.createElement('div');
+                var divtags1 = document.createElement('div');
+                var divtags2 = document.createElement('div');
+
+                divrow.classList.add("form-group", "row","my-2");
+                divtags1.classList.add("col");
+                divtags2.classList.add("col");
+                // divtags2.nodeValue = "1";
+
+                
+                divtags1.appendChild(remplist);
+                divtags1.appendChild(funcremplist);
+                divtags2.appendChild(replaceagent);
+                divtags2.appendChild(funcreplaceagent);
+                // divtags.appendChild(document.createElement('br')); // Line break for better formatting
+
+                divrow.appendChild(divtags1);
+                divrow.appendChild(divtags2);
+                divrow.classList.add("btborder", "pb-1");
+                inputsContainer.appendChild(divrow);
+                
+            }
+        }
+        getInputs();
 
         function clearInput() {
             document.getElementById('rempCount').value = "";
@@ -330,6 +402,7 @@ CDN
 </html>
 
 <?php
+            }
         }
     }
  ?>
