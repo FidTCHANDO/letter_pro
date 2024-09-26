@@ -1,0 +1,22 @@
+<svg id="Trash" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b40000;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path id="Rounded_Rectangle_1" data-name="Rounded Rectangle 1" class="cls-1" d="M267.464,248.885H731.621V837.063A36.838,36.838,0,0,1,694.784,873.9H304.3a36.838,36.838,0,0,1-36.838-36.838V248.885Z"/>
+  <path class="cls-2" d="M359.561,325.012h30.686V810.053H359.561V325.012Z"/>
+  <path id="Rectangle_2_copy" data-name="Rectangle 2 copy" class="cls-2" d="M482.354,325.012h30.685V810.053H482.354V325.012Z"/>
+  <path id="Rectangle_2_copy_2" data-name="Rectangle 2 copy 2" class="cls-2" d="M605.146,325.012h30.686V810.053H605.146V325.012Z"/>
+  <path class="cls-1" d="M268.654,208.364H730.547S758.763,210.6,761.092,201s15.743-37.692-30.545-46.661H589.182c-22.746-13.825-6.881-27.276-99.463-28.243s-89.638,25.787-89.638,25.787H268.654s-36.3,10.168-33.116,31.926S247.288,209.62,268.654,208.364Z"/>
+</svg>

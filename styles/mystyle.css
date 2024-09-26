@@ -1,0 +1,20 @@
+#login-box, #forgot-box, #signup-box {
+    border-top: 3px solid rgb(14, 115, 255);
+}
+
+body {
+    background-color: rgb(192, 192, 192);
+}
+#mainpart {
+    font-size: small;
+    /* font-family: 'Times New Roman', Times, serif; */
+}
+
+.silver {
+    background-color: silver;
+}
+
+.btborder {
+    border-bottom: 1px solid silver;
+    
+}

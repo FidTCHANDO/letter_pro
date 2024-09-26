@@ -1,0 +1,171 @@
+#login-box, #forgot-box, #signup-box {
+    border-top: 3px solid rgb(14, 115, 255);
+}
+@font-face {
+    font-family: "BookmanOldStyle";
+    src: url("./BOOKOS.TTF") format("truetype");
+}
+
+body {
+    font-family: 'BookmanOldStyle', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+    /* height: 190mm; */
+}
+
+#pdfpage {
+    /* display: none; */
+    font-family: 'BookmanOldStyle', Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    width: 210mm;
+    /* height: 260mm; */
+    margin: 10mm auto;
+    padding: 20px 1in;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+#logoms {
+    position: relative;
+    left: -.3in;
+    width: 60%;
+    /* background: rgba(0,0,0,0.1); */
+}
+
+#address {
+    /* position: relative; */
+    left: .3in;
+    padding: 0;
+    width: 100%;
+    border: 0;
+    /* background: rgba(0,0,0,0.1); */
+}
+
+#location {
+    position: relative;
+    right: 1in;
+}
+
+#titre {
+    font-size: 16pt;
+    font-weight: bolder;
+}
+.important {
+    font-weight: bold;
+}
+
+#lineheightsmall {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
+    text-align: right;
+    font-size: 8pt;
+    line-height: 10pt;
+    /* background-color: rgba(0,0,0,0.2); */
+}
+#lineheightsmall a {
+    text-decoration: underline;
+
+}
+
+#bodyletter {
+    line-height: 30pt;
+    font-size: 14pt;
+    text-align: justify;
+    text-indent: .5in;
+}
+#signature {
+    margin-top: 100pt;
+    line-height: 5pt;
+    position: relative;
+    right: 30pt;
+}
+
+#dottedBottom {
+    /* border-bottom: dotted 1px;
+    width: 50px; */
+    background-color: rgb(33, 16, 214);
+    /* flex-grow: 2;
+    flex-shrink: 2;
+    flex-basis: auto; */
+    
+}
+.dotted {
+    border-bottom: dotted 1px;
+    width: 80%;
+    margin-bottom: 5px
+}
+
+@media print {
+    body {
+        margin: 0;
+        font-size: 16pt;
+    }
+    #printer {
+        visibility: hidden;
+    }
+    #pdfpage {
+        box-shadow: none;
+        margin: 0 auto;
+        width: 95%;
+        position: relative;
+        bottom: 10mm;
+        
+        /* width: auto; */
+        /* height: auto; */
+        /* page-break-after: always; */
+        /* background-color: rgba(0,0,0,0.2); */
+    }
+
+    #bodyletter {
+        line-height: 40pt;
+        font-size: 18pt;
+        /* text-align: justify; */
+        /* text-indent: .5in; */
+    }
+
+    #titre {
+        font-size: 20pt;
+        /* font-weight: bolder; */
+    }
+
+    #logoms {
+        /* position: relative;
+        left: -.3in; */
+        width: 80%;
+        /* background: rgba(0,0,0,0.1); */
+    }
+    
+    #location {
+        /* position: relative; */
+        /* right: 1in; */
+        font-size: 18pt;
+    }
+
+    
+    #lineheightsmall {
+        /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+        width: 100%;
+        /* text-align: right; */
+        font-size: 14pt;
+        line-height: 15pt;
+        /* background-color: rgba(0,0,0,0.2); */
+    }
+
+    #entete, #signature {
+        font-size: 18pt;
+    }
+    #signature {
+        line-height: 10pt;
+    }
+    
+    #refandlocation, #ampliation {
+        font-size: 16pt;
+        /* margin-top: 100pt; */
+        /* line-height: 5pt; */
+        /* position: relative; */
+        /* right: 30pt; */
+    }
+    
+}

@@ -1,0 +1,27 @@
+<svg id="eye" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="505.375" y1="730.125" x2="505.375" y2="274.438" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000c1d"/>
+      <stop offset="1" stop-color="#00c0fa"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="500" y1="652.562" x2="500" y2="347.438" xlink:href="#linear-gradient"/>
+  </defs>
+  <path class="cls-1" d="M500,274.432c-162.3,0-333.561,84.442-396.023,185.578,0,0-38.673,43.343,0,82.559S300.074,730.114,500,730.114s339.293-121.5,401.705-187.545c0,0,50.075-40.248,0-82.559S662.3,274.432,500,274.432Z"/>
+  <ellipse class="cls-2" cx="500" cy="500.5" rx="265" ry="185.5"/>
+  <circle id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-3" cx="500" cy="500" r="152.562"/>
+  <circle class="cls-2" cx="595.562" cy="405.719" r="33"/>
+</svg>
