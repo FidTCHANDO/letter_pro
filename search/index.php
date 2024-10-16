@@ -20,6 +20,8 @@
         .icon:focus, .icon:hover {
             cursor: pointer;
         }
+
+
     </style>
 </head>
 <body>
@@ -130,24 +132,25 @@
         </div>
         </div>
 
-        
-        <table class="table table-striped table-hover" id="tableActes">
+        <div class="table-responsive">
+        <table class="table align-middle table-striped table-hover" id="tableActes">
         <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nom de l'acte</th>
-            <th class="titrehead" scope="col" style="width: 30%;"><span>Nom et Prénoms</span></th>
-            <th class="titrehead" scope="col"><span>Sexe</span></th>
-            <th class="replacehead d-none" scope="col" style="width: 45%;"><span>Libellé de l'activité</span></th>
-            <th class="replacehead d-none" scope="col"  style="width: 15%;"><span >Nombre de <br>remplaçants</span></th>
-            <th scope="col"><span>Date de début</span></th>
-            <th scope="col"><span>Date de fin</span></th>
-            <th scope="col">Ajouté le</span></th>
-            <th scope="col" style="min-width: 120px;">Actions</th>
+            <tr class="text-white align-middle">
+            <th class="bg-primary" scope="col">#</th>
+            <th class="bg-primary" scope="col" style="width: 260px" id="hd_nom">Nom de l'acte</th>
+            <th class="titrehead bg-primary" scope="col"><span>Nom et Prénoms</span></th>
+            <th class="titrehead bg-primary" scope="col"><span>Sexe</span></th>
+            <th class="replacehead d-none bg-primary" scope="col" style="width: 350px;" id="hd_lib"><span>Libellé de l'activité</span></th>
+            <th class="replacehead d-none bg-primary" scope="col"><span >Nombre de <br>remplaçants</span></th>
+            <th scope="col" class="bg-primary"><span>Date de début</span></th>
+            <th scope="col" class="bg-primary"><span>Date de fin</span></th>
+            <th scope="col" class="bg-primary">Ajouté le</span></th>
+            <th scope="col" class="bg-primary" style="min-width: 130px;">Actions</th>
             </tr>
         </thead>
         <div id="empty" class="d-none">Pas de données</div>
         </table>
+        </div>
 
     <nav class="" aria-label="pages" id="pagination_nav">
     <ul class="pagination" id="listpages">

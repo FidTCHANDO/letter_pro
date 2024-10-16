@@ -20,6 +20,8 @@ $(document).ready(function(){
             search.val("");
             $("tbody").remove();
             $("#listpages").empty();
+            $("#hd_nom").css('width', '220px');
+            $("#hd_lib") .css({width: '300px'});
             search.focus();
         }
         else {
@@ -28,6 +30,8 @@ $(document).ready(function(){
             search.val("");
             $("tbody").remove();
             $("#listpages").empty();
+            $("#hd_nom").css({width: '260px'});
+            $("#hd_lib") .css({width: '350px'});
             search.focus();
         }
     });
@@ -92,7 +96,7 @@ $(document).ready(function(){
                                         <th scope="row">${acte.id}</th>
                                         <td>${acte.typeacte}</td>
                                         <td>${acte.libele_activite}</td>
-                                        <td>${acte.replaceCount}</td>
+                                        <td class="text-center">${acte.replaceCount}</td>
                                         <td>${acte.datedebut}</td>
                                         <td>${acte.datefin}</td>
                                         <td>${acte.datedecreation}</td>
