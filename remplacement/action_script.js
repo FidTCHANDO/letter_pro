@@ -83,4 +83,39 @@ $(document).ready(function(){
 
         
     });
+
+    $("#modify_btn").on("click", function (e) {
+        e.preventDefault();
+
+        $("#replace_form").valid();
+
+        if ($("#replace_form").valid()) {
+            // alert($("#replace_form").serialize()+'&action=replacement');
+            $.ajax({
+                url: '../action.php',
+                method: 'post',
+                data: $("#replace_form").serialize()+'&action=update',
+                success: function (data) {
+                    if (data === "ok") {
+                        alert("No saving");
+                    }
+                    else {
+                        $("#result").html(data);
+                        // $("#alert").slideDown(5000).fadeOut(3000);
+                        $("#alert").addClass('alert-success');
+                        $("#alert").removeClass('d-none');
+                        setTimeout(() => {
+                            $("#alert").addClass('d-none');
+                        }, 10000);
+                    }
+                },
+                complete: function () {
+                    $("#replace_form")[0].reset();
+                    
+                }
+            });
+        }
+
+        
+    });
 });

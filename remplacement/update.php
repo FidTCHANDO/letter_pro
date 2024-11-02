@@ -70,10 +70,13 @@
             </div>
         </div>
     </nav>
-    Message : <?php print_r($get_rep); ?>
+    <!-- Message :  -->
+    <?php 
+        // print_r($get_rep); 
+     ?>
     <!-- Main part of the page -->
-    <div class="container my-3 " id="mainpart">
-    <div class="d-flex justify-centent-center">
+    <div class="container my-3" id="mainpart">
+    <div class="d-flex justify-content-center">
             <div class="col-lg-8 bg-white card-body rounded border-top-primary" id="login-box">
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
@@ -123,7 +126,7 @@
                             <!-- <small class="form-text text-muted">Laissez vide si correct</small> -->
                         </div>
                         
-
+                        <input type="number" name="code" id="code" hidden value="<?= $pin ?>">
                     </div>
                     
                     
@@ -230,7 +233,7 @@
                     </div> -->
                     
                     <div class="form-group mt-1">
-                        <input type="submit" value="Enregistrer" id="enregistrer_btn" class="btn btn-block btn-primary">
+                        <input type="submit" value="Modifier" id="modify_btn" class="btn btn-block btn-primary">
                     </div>
                 </form> 
 

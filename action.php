@@ -251,5 +251,89 @@
         }
 
 
+    };
+
+    if (isset($_POST['action']) && $_POST['action'] === 'update') {
+
+        ## variables creation
+        $reference = check_input($_POST['reference']);
+        $lieu = check_input($_POST['lieu']);
+        $type = check_input($_POST['type']);
+        $reference_note = check_input($_POST['reference_note']);
+        $libele_activite = check_input($_POST['libele_activite']);
+        $budget = check_input($_POST['budget']);
+        $lignebudgetaire = check_input($_POST['lignebudgetaire']);
+        $intituleLB = check_input($_POST["intitule_ligne"]);
+        $anneegestion = check_input($_POST["gestion"]);
+        $othersource = check_input($_POST['othersource']);
+        $datedebut = check_input($_POST["debutdate"]);
+        $datefin = check_input($_POST["datefin"]);
+        $remplCounter = check_input($_POST['remplCounter']);
+        $nomsignataire = check_input($_POST['nomsignataire']);
+        $titresignataire = check_input($_POST['titresignataire']);
+        $datecreation = date("Y-m-d H:i:s");
+        $code = check_input($_POST["code"]);
+
+        if ($remplCounter > 0) {
+            for ($i=1; $i <= $remplCounter; $i++) { 
+                ${"rempl$i"} = check_input($_POST["rempl$i"]);
+                ${"funcrempl$i"} = check_input($_POST["funcrempl$i"]);
+                ${"replaceagent$i"} = check_input($_POST["replaceagent$i"]);
+                ${"funcreplaceagent$i"} = check_input($_POST["funcreplaceagent$i"]);
+            };
+        };
+
+        ################ Enregistrement dans la base de données 
+        if ($budget === "Budget National") {
+            $remplSQL = $conn -> prepare("UPDATE replacement SET reference = ?, lieu = ?, typeacte = ?,
+            reference_note = ?, libele_activite = ?, budget = ?, ligne_budgetaire = ?, intitule_ligne = ?,
+            annee_gestion = ?, datedebut = ?, datefin = ?, nomsignataire = ?, titresignataire = ?,
+            replaceCount = ?, datecreation = ? WHERE id = $code");
+
+            $remplSQL -> bind_param("ssssssssissssis", $reference, $lieu, $type, $reference_note, 
+            $libele_activite, $budget, $lignebudgetaire, $intituleLB, $anneegestion, $datedebut, $datefin, $nomsignataire,
+            $titresignataire, $remplCounter, $datecreation);
+        } elseif ($budget === "Organisateur") {
+            $remplSQL = $conn -> prepare("UPDATE replacement SET reference = ?, lieu = ?, typeacte = ?,
+            reference_note = ?, libele_activite = ?, budget = ?, datedebut = ?, datefin = ?, nomsignataire = ?,
+            titresignataire = ?, replaceCount = ?, datecreation = ? WHERE id = $code");
+
+            $remplSQL -> bind_param("ssssssssssis", $reference, $lieu, $type, $reference_note, 
+            $libele_activite, $budget, $datedebut, $datefin, $nomsignataire,
+            $titresignataire, $remplCounter, $datecreation);
+        } else {
+            $remplSQL = $conn -> prepare("UPDATE replacement SET reference = ?, lieu = ?, typeacte = ?,
+            reference_note = ?, libele_activite = ?, budget = ?, autre_source = ?, datedebut = ?, datefin = ?, nomsignataire = ?,
+            titresignataire = ?, replaceCount = ?, datecreation = ? WHERE id = $code");
+
+            $remplSQL -> bind_param("sssssssssssis", $reference, $lieu, $type, $reference_note, 
+            $libele_activite, $budget, $othersource, $datedebut, $datefin, $nomsignataire,
+            $titresignataire, $remplCounter, $datecreation);
+        }
+        
+
+        if ($remplSQL -> execute()) {
+            $idgotten = $code;
+
+            for ($i=1; $i <= $remplCounter; $i++) { 
+                $substSQL = $conn -> prepare("UPDATE substitutes SET id_rempl = ?, subst_fullname = ?,
+                subst_function = ?, new_fullname = ?, new_function = ?, adding_time = ? WHERE id_rempl = $code");
+
+                // $substSQL -> bind_param("isssss", $remplresult["id"], ${"rempl$i"}, ${"funcrempl$i"},
+                $substSQL -> bind_param("isssss", $idgotten, ${"rempl$i"}, ${"funcrempl$i"},
+                ${"replaceagent$i"}, ${"funcreplaceagent$i"}, $datecreation);
+
+                $substSQL -> execute();
+                if ($i == $remplCounter) {
+                    echo "Recording modified successfully !!!";
+                }
+            }
+
+        }
+        else {
+            echo "Failed to modify the registration of replacement";
+        }
+
+
     }
 ?>
