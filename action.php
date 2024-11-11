@@ -325,7 +325,7 @@
 
                 $substSQL -> execute();
                 if ($i == $remplCounter) {
-                    echo "Recording modified successfully !!!";
+                    echo "Recording modified successfully !!! <br> Please, close this tab.";
                 }
             }
 

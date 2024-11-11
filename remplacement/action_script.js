@@ -90,7 +90,8 @@ $(document).ready(function(){
         $("#replace_form").valid();
 
         if ($("#replace_form").valid()) {
-            // alert($("#replace_form").serialize()+'&action=replacement');
+            $("#form_page").hide();
+            // $("#generator_remp_form").hide();
             $.ajax({
                 url: '../action.php',
                 method: 'post',
