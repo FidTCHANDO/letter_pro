@@ -277,9 +277,9 @@
         if ($remplCounter > 0) {
             for ($i=1; $i <= $remplCounter; $i++) { 
                 ${"rempl$i"} = check_input($_POST["rempl$i"]);
-                ${"funcrempl$i"} = check_input($_POST["funcrempl$i"]);
+                ${"funcrempl$i"} = htmlspecialchars($_POST["funcrempl$i"]);
                 ${"replaceagent$i"} = check_input($_POST["replaceagent$i"]);
-                ${"funcreplaceagent$i"} = check_input($_POST["funcreplaceagent$i"]);
+                ${"funcreplaceagent$i"} = htmlspecialchars($_POST["funcreplaceagent$i"]);
             };
         };
 

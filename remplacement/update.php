@@ -161,8 +161,7 @@
                             </div>
                             <div class="form-group col-4" id="divlignebn">
                                 <label for="lignebudgetaire"><strong>Ligne budgétaire</strong></label>
-                                <textarea name="lignebudgetaire" id="lignebudgetaire" placeholder="Ex: 045001000 3200121 2002000601 1 0111 6114" class="form-control">
-                                <?= $updat_data["ligne_budgetaire"] ?>
+                                <textarea name="lignebudgetaire" id="lignebudgetaire" placeholder="Ex: 045001000 3200121 2002000601 1 0111 6114" class="form-control"><?= $updat_data["ligne_budgetaire"] ?>
                                 </textarea>
                             </div>
                             <div class="form-group col-4 d-none" id="other">

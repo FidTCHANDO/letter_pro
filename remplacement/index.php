@@ -120,7 +120,7 @@
                     for ($i=0; $i < $element["replaceCount"]; $i++) {
                         $end1 = $i == $nbr - 1 ? "": ($i < $nbr-2 ? ",": " et");
                         ?>
-                        <li><span class="important"><?= $subst[$i]["subst_fullname"]; ?></span>, <?= $subst[$i]["subst_function"]; ?><?=$end1;?></li>
+                        <li><span class="important"><?= $subst[$i]["subst_fullname"]; ?></span>, <?php htmlspecialchars_decode($subst[$i]["subst_function"]); ?><?=$end1;?></li>
                 <?php
                     }
                  ?>
