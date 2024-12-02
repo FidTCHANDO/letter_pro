@@ -314,19 +314,25 @@
 
         if ($remplSQL -> execute()) {
             $idgotten = $code;
+            $delquery = $conn -> prepare("DELETE FROM substitutes WHERE id_rempl = $idgotten");
 
-            for ($i=1; $i <= $remplCounter; $i++) { 
-                $substSQL = $conn -> prepare("UPDATE substitutes SET id_rempl = ?, subst_fullname = ?,
-                subst_function = ?, new_fullname = ?, new_function = ?, adding_time = ? WHERE id_rempl = $code");
+            if ($delquery -> execute()) {
 
-                // $substSQL -> bind_param("isssss", $remplresult["id"], ${"rempl$i"}, ${"funcrempl$i"},
-                $substSQL -> bind_param("isssss", $idgotten, ${"rempl$i"}, ${"funcrempl$i"},
-                ${"replaceagent$i"}, ${"funcreplaceagent$i"}, $datecreation);
+                for ($i=1; $i <= $remplCounter; $i++) { 
 
-                $substSQL -> execute();
-                if ($i == $remplCounter) {
-                    echo "Recording modified successfully !!! <br> Please, close this tab.";
+                    $substSQL = $conn -> prepare("INSERT INTO substitutes (id_rempl, subst_fullname, subst_function,
+                    new_fullname, new_function, adding_time) VALUES (?, ?, ?, ?, ?, ?)");
+
+                    // $substSQL -> bind_param("isssss", $remplresult["id"], ${"rempl$i"}, ${"funcrempl$i"},
+                    $substSQL -> bind_param("isssss", $idgotten, ${"rempl$i"}, ${"funcrempl$i"},
+                    ${"replaceagent$i"}, ${"funcreplaceagent$i"}, $datecreation);
+    
+                    $substSQL -> execute();
+                    if ($i == $remplCounter) {
+                        echo "Recording modified successfully !!! <br> Please, close this tab.";
+                    }
                 }
+
             }
 
         }
