@@ -283,61 +283,69 @@
             };
         };
 
-        ################ Enregistrement dans la base de données 
-        if ($budget === "Budget National") {
-            $remplSQL = $conn -> prepare("UPDATE replacement SET reference = ?, lieu = ?, typeacte = ?,
-            reference_note = ?, libele_activite = ?, budget = ?, ligne_budgetaire = ?, intitule_ligne = ?,
-            annee_gestion = ?, datedebut = ?, datefin = ?, nomsignataire = ?, titresignataire = ?,
-            replaceCount = ?, datecreation = ? WHERE id = $code");
-
-            $remplSQL -> bind_param("ssssssssissssis", $reference, $lieu, $type, $reference_note, 
-            $libele_activite, $budget, $lignebudgetaire, $intituleLB, $anneegestion, $datedebut, $datefin, $nomsignataire,
-            $titresignataire, $remplCounter, $datecreation);
-        } elseif ($budget === "Organisateur") {
-            $remplSQL = $conn -> prepare("UPDATE replacement SET reference = ?, lieu = ?, typeacte = ?,
-            reference_note = ?, libele_activite = ?, budget = ?, datedebut = ?, datefin = ?, nomsignataire = ?,
-            titresignataire = ?, replaceCount = ?, datecreation = ? WHERE id = $code");
-
-            $remplSQL -> bind_param("ssssssssssis", $reference, $lieu, $type, $reference_note, 
-            $libele_activite, $budget, $datedebut, $datefin, $nomsignataire,
-            $titresignataire, $remplCounter, $datecreation);
-        } else {
-            $remplSQL = $conn -> prepare("UPDATE replacement SET reference = ?, lieu = ?, typeacte = ?,
-            reference_note = ?, libele_activite = ?, budget = ?, autre_source = ?, datedebut = ?, datefin = ?, nomsignataire = ?,
-            titresignataire = ?, replaceCount = ?, datecreation = ? WHERE id = $code");
-
-            $remplSQL -> bind_param("sssssssssssis", $reference, $lieu, $type, $reference_note, 
-            $libele_activite, $budget, $othersource, $datedebut, $datefin, $nomsignataire,
-            $titresignataire, $remplCounter, $datecreation);
-        }
+        $delreplace = $conn -> prepare("DELETE FROM replacement WHERE id = $code");
         
+        if ($delreplace -> execute()) {
+            
+            ################ Enregistrement dans la base de données 
+            if ($budget === "Budget National") {
+                $remplSQL = $conn -> prepare("INSERT INTO replacement (reference, lieu, typeacte,
+                reference_note, libele_activite, budget, ligne_budgetaire, intitule_ligne, annee_gestion, datedebut, datefin,
+                nomsignataire, titresignataire, replaceCount, datecreation,id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,$code)");
 
-        if ($remplSQL -> execute()) {
-            $idgotten = $code;
-            $delquery = $conn -> prepare("DELETE FROM substitutes WHERE id_rempl = $idgotten");
+                $remplSQL -> bind_param("ssssssssissssis", $reference, $lieu, $type, $reference_note, 
+                $libele_activite, $budget, $lignebudgetaire, $intituleLB, $anneegestion, $datedebut, $datefin, $nomsignataire,
+                $titresignataire, $remplCounter, $datecreation);
+            } elseif ($budget === "Organisateur") {
+                $remplSQL = $conn -> prepare("INSERT INTO replacement (reference, lieu, typeacte,
+                reference_note, libele_activite, budget, datedebut, datefin,
+                nomsignataire, titresignataire, replaceCount, datecreation, id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?, $code)");
 
-            if ($delquery -> execute()) {
+                $remplSQL -> bind_param("ssssssssssis", $reference, $lieu, $type, $reference_note, 
+                $libele_activite, $budget, $datedebut, $datefin, $nomsignataire,
+                $titresignataire, $remplCounter, $datecreation);
+            } else {
+                $remplSQL = $conn -> prepare("INSERT INTO replacement (reference, lieu, typeacte,
+                reference_note, libele_activite, budget, autre_source, datedebut, datefin,
+                nomsignataire, titresignataire, replaceCount, datecreation, id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,$code)");
 
-                for ($i=1; $i <= $remplCounter; $i++) { 
+                $remplSQL -> bind_param("sssssssssssis", $reference, $lieu, $type, $reference_note, 
+                $libele_activite, $budget, $othersource, $datedebut, $datefin, $nomsignataire,
+                $titresignataire, $remplCounter, $datecreation);
+            }
+            
+            ############### Enregistrement des données de la liste des personnes substituées
+            if ($remplSQL -> execute()) {
+                $idgotten = $code;
+                $delquery = $conn -> prepare("DELETE FROM substitutes WHERE id_rempl = $idgotten");
 
-                    $substSQL = $conn -> prepare("INSERT INTO substitutes (id_rempl, subst_fullname, subst_function,
-                    new_fullname, new_function, adding_time) VALUES (?, ?, ?, ?, ?, ?)");
+                if ($delquery -> execute()) {
 
-                    // $substSQL -> bind_param("isssss", $remplresult["id"], ${"rempl$i"}, ${"funcrempl$i"},
-                    $substSQL -> bind_param("isssss", $idgotten, ${"rempl$i"}, ${"funcrempl$i"},
-                    ${"replaceagent$i"}, ${"funcreplaceagent$i"}, $datecreation);
-    
-                    $substSQL -> execute();
-                    if ($i == $remplCounter) {
-                        echo "Recording modified successfully !!! <br> Please, close this tab.";
+                    for ($i=1; $i <= $remplCounter; $i++) { 
+
+                        $substSQL = $conn -> prepare("INSERT INTO substitutes (id_rempl, subst_fullname, subst_function,
+                        new_fullname, new_function, adding_time) VALUES (?, ?, ?, ?, ?, ?)");
+
+                        // $substSQL -> bind_param("isssss", $remplresult["id"], ${"rempl$i"}, ${"funcrempl$i"},
+                        $substSQL -> bind_param("isssss", $idgotten, ${"rempl$i"}, ${"funcrempl$i"},
+                        ${"replaceagent$i"}, ${"funcreplaceagent$i"}, $datecreation);
+        
+                        $substSQL -> execute();
+                        if ($i == $remplCounter) {
+                            echo "Recording modified successfully !!! <br> Please, close this tab.";
+                        }
                     }
+
                 }
 
+            }
+            else {
+                echo "Failed to modify the registration of replacement";
             }
 
         }
         else {
-            echo "Failed to modify the registration of replacement";
+            echo "Impossible de modifier l'enregistrement...";
         }
 
 

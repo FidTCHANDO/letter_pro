@@ -161,8 +161,7 @@
                             </div>
                             <div class="form-group col-4 <?php echo $dnone = $updat_data["budget"] === "Budget National" ? "" : "d-none"; ?>" id="divlignebn">
                                 <label for="lignebudgetaire"><strong>Ligne budgétaire</strong></label>
-                                <textarea name="lignebudgetaire" id="lignebudgetaire" placeholder="Ex: 045001000 3200121 2002000601 1 0111 6114" class="form-control"><?= $updat_data["ligne_budgetaire"] ?>
-                                </textarea>
+                                <textarea name="lignebudgetaire" id="lignebudgetaire" placeholder="Ex: 045001000 3200121 2002000601 1 0111 6114" class="form-control"><?= $updat_data["ligne_budgetaire"] ?></textarea>
                             </div>
                             <div class="form-group col-4 d-none <?php echo $dnone = $updat_data["budget"] === "Autre" ? "" : "d-none"; ?>" id="other">
                                 <label for="othersource"><strong>Préciser source de financement</strong></label>
@@ -171,8 +170,8 @@
                             </div>
                             <div class="form-group col-4 <?php echo $dnone = $updat_data["budget"] === "Budget National" ? "" : "d-none"; ?>" id="divintitule_ligne">
                                 <label for="intitule_ligne"><strong>Intitulé de la ligne budgétaire</strong></label>
-                                <textarea name="intitule_ligne" value="<?= $updat_data["intitule_ligne"] ?>" class="form-control" placeholder="Ex: Indemnités de mission à l'intérieur" id="intitule_ligne"><?= $updat_data["intitule_ligne"] ?>
-                                </textarea>
+                                <textarea name="intitule_ligne" 
+                                    value="<?= $updat_data["intitule_ligne"] ?>" class="form-control" placeholder="Ex: Indemnités de mission à l'intérieur" id="intitule_ligne"><?= $updat_data["intitule_ligne"] ?></textarea>
                             </div>
                             <div class="form-group col-2 <?php echo $dnone = $updat_data["budget"] === "Budget National" ? "" : "d-none"; ?>" id="divgestion">
                                 <label for="gestion"><strong>Année de gestion</strong></label>
