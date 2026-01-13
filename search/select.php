@@ -50,10 +50,10 @@
                         <a class="nav-link" href="../" aria-current="page">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../new.php">Enregistrer</a>
+                        <a class="nav-link active" href="../new.php">Enregistrer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./index.php">Rechercher</a>
+                        <a class="nav-link" href="./index.php">Rechercher</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

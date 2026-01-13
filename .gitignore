@@ -3,4 +3,4 @@ test*.php
 styles/additional.css
 styles/es6*
 styles/html2*
-styles/p*
+/styles/p*

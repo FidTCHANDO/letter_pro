@@ -57,7 +57,8 @@ $(document).ready(function(){
                 else {
                     $("tbody").remove();
                     $("#listpages").html("");
-                    
+                    $("#empty").addClass("d-none");
+
                     donnees = data.events;
                     if (donnees.length>0) {
                         const totalPages = Math.ceil(donnees.length/numbparpage);
@@ -178,7 +179,7 @@ $(document).ready(function(){
 
                 $(".fa-pencil").on("click", function () {
                     if ($("#field").val() === "TITRE DE CONGÉ ADMINISTRATIF") {
-                        window.open(`../pdf/update.php?id=${$(this).attr('data-row')}`, "_blank");                   
+                        window.open(`../pdf/update.php?pin=${$(this).attr('data-row')}`, "_blank");                   
                     }
                     else {
                         window.open(`../remplacement/update.php?pin=${$(this).attr('data-row')}`, '_blank');

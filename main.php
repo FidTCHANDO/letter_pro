@@ -120,7 +120,7 @@
     <div class="m-2 row d-flex justify-content-start">
         <div class="card col-md-3 dashcard shadow col-sm-4 bg-info rounded m-2 p-1">
             <div class="row m-0 card-header">
-                <div class="col-8">
+                <div class="row">
                     <span class="h1 text-white text-robot value" id="CountConge">-- </span>
                     <br>
                 
@@ -137,9 +137,8 @@
         </div>
         <div class="col-md-3 card dashcard col-sm-4 bg-warning rounded m-2 p-1">
             <div class="row m-0 card-header">
-                <div class="col-8">
+                <div class="row">
                     <span class="h1 text-white text-robot value" id="CountReplace">100 M</span>
-                    
                 </div>
                 <div class="col-4"></div>
             </div>

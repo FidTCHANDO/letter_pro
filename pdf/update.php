@@ -1,15 +1,29 @@
 <?php
-    require_once("./session.php");    
-?>
+    require_once("../config.php");    
+    session_start();
+    if (!isset($_SESSION["username"])) {
+        header("location:../index.php");
+    };
+    if (isset($_GET["pin"])) {
+        $pin = check_input($_GET["pin"]);
+        $updt_con = $conn -> query("SELECT * FROM titredeconge WHERE id_acte = $pin");
+        
+        if ($updt_con -> num_rows == 1) {
+            $updat_data = $updt_con -> fetch_assoc();
+            $rep_sql = $conn -> query("SELECT * FROM ampliations WHERE id_titre = $pin");
+            if ($rep_sql -> num_rows > 0) {
+                $get_rep = $rep_sql -> fetch_all(MYSQLI_ASSOC);
+                
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enregistrer</title>
-    <link rel="stylesheet" href="styles/bootstrap.css">
-    <link rel="stylesheet" href="styles/mystyle.css">
+    <title>Modification: Titre de congés</title>
+    <link rel="stylesheet" href="../styles/bootstrap.css">
+    <link rel="stylesheet" href="../styles/mystyle.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 </head>
 <body>
@@ -43,7 +57,7 @@
                           <?= $_SESSION["username"]?><img class="rounded mx-1 bg-white" src="<?php if (isset($_SESSION["profpicture"])) {
                             echo $_SESSION["profpicture"];
                           } else {
-                            echo "./pictures/default.png";
+                            echo "../pictures/default.png";
                           } ?>" alt="Pic" style="height: 20px; width: 20px;" srcset="">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
@@ -200,10 +214,10 @@ CDN
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
 -->
     
-    <script src="styles/jquery-3.7.1.js"></script>
-    <script src="styles/jquery.validate.min.js"></script>
-    <script src="styles/popper.min.js"></script>
-    <script src="styles/bootstrap.js"></script>
+    <script src="../styles/jquery-3.7.1.js"></script>
+    <script src="../styles/jquery.validate.min.js"></script>
+    <script src="../styles/popper.min.js"></script>
+    <script src="../styles/bootstrap.js"></script>
     
     <!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script> -->
 
@@ -262,6 +276,14 @@ CDN
             
         }
     </script>
-    <script src="styles/myjquery.js"></script>
+    <script src="../styles/myjquery.js"></script>
 </footer>
 </html>
+
+<?php
+            }
+            
+        }
+        
+    }
+ ?>
