@@ -121,7 +121,7 @@
         <div class="card col-md-3 dashcard shadow col-sm-4 bg-info rounded m-2 p-1">
             <div class="row m-0 card-header">
                 <div class="row">
-                    <span class="h1 text-white text-robot value" id="CountConge">-- </span>
+                    <span class="h1 text-white text-robot value" id="CountConge"><?php echo $titre['total']; ?></span>
                     <br>
                 
                 </div>

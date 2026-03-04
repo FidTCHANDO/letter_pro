@@ -30,8 +30,8 @@
     $_SESSION["created"] = $row["creation_date"];    
 
     // Articles downloads
-    // $sql = "SELECT * FROM articles LIMIT 0, 4";
-    // $arti = $conn -> query($sql);
+    $arti = $conn -> query("SELECT COUNT(*) AS total FROM titredeconge");
+    $titre = $arti -> fetch_assoc();
     // if ($arti -> num_rows > 0) {
     //     while ($listArt = $arti -> fetch_all(MYSQLI_ASSOC)) {
     //         # code...
@@ -40,5 +40,5 @@
     
 
 
-
+    $conn -> close()
 ?>

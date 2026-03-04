@@ -107,7 +107,7 @@
         $nomsignataire = check_input($_POST['nomsignataire']);
         $titresignataire = check_input($_POST['titresignataire']);
         $inputCount = check_input($_POST['ampliCount']);
-        $datecreation = date("Y-m-d");
+        $datecreation = date("Y-m-d H:i:s");
 
         if ($inputCount > 0) {
             for ($i=1; $i <= $inputCount; $i++) { 
@@ -127,7 +127,7 @@
         $nomsignataire, $titresignataire, $inputCount, $datecreation);
 
         if ($titreinsertion -> execute()) {
-            $findacte = $conn -> prepare("SELECT id_acte, datecreation FROM titredeconge WHERE name_agent = ? AND fonction_agent = ?
+            $findacte = $conn -> prepare("SELECT numero, datecreation FROM titredeconge WHERE name_agent = ? AND fonction_agent = ?
             AND periode = ? AND debutdate = ?");
             $findacte -> bind_param("ssss", $name_agent, $fonction_agent, $periode, $debutdate);
             $findacte -> execute();
@@ -141,7 +141,7 @@
                         $addampli_sql = $conn -> prepare("INSERT INTO ampliations (id_titre, amplist, numamplist,
                         creation_date) VALUES (?,?,?,?)");
                         
-                        $addampli_sql -> bind_param("isis", $listfund['id_acte'], ${"amplist$i"}, 
+                        $addampli_sql -> bind_param("isis", $listfund['numero'], ${"amplist$i"}, 
                         ${"numamplist$i"}, $listfund['datecreation']);
 
                         if ($addampli_sql -> execute()) {

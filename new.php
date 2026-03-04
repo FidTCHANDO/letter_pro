@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark align-right bg-dark">
         <div class="container justify-content">
-            <a class="navbar-brand" href="#">LetterPro</a>
+            <a class="navbar-brand" href="./main.php">LetterPro</a>
             <button
                 class="navbar-toggler d-lg-none"
                 type="button"

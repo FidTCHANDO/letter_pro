@@ -1,11 +1,12 @@
 <?php
     require_once("../config.php");
     // echo "Not good";
-    
+
+
     if (isset($_POST['search_bar'])) {
         $keyword = check_input($_POST["search_bar"]);
         $data = array();
-        $base = check_input($_POST["database"]);
+        $base = check_input($_POST["datatable"]);
         $table = $base === "TITRE DE CONGÉ ADMINISTRATIF" ? "titredeconge" : "replacement";
         $field = $base === "TITRE DE CONGÉ ADMINISTRATIF" ? "name_agent" : "libele_activite";
 
