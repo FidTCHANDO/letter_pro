@@ -61,14 +61,14 @@
     <div class="container my-3 " id="mainpart">
     <div class="d-flex justify-centent-center">
             <div class="col-lg-8 bg-white card-body rounded border-top-primary" id="login-box">
-            <div class="row d-flex justify-content-center">
-                <div class="col-8">
+            <!-- <div class="row d-flex justify-content-center"> -->
+                <div class="col">
                     <div class="alert alert-success d-flex justify-content-between d-none" id="alert">
                         <span id="result"></span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
 
                 <h3 class="">Formulaire de Titre de Congés Administratifs</h3>
                 <form action="" method="post" role="form" id="conges_form">
@@ -185,9 +185,7 @@
                         <input type="submit" value="Enregistrer" id="enregistrer_btn" class="btn btn-block btn-primary">
                     </div>
                 </form> 
-
-                
-                
+ 
             </div>
         </div>
     </div>

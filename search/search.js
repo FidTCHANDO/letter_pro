@@ -140,8 +140,17 @@ $(document).ready(function(){
         };
     };
 
-    function oncecomplete() {
-        $(".eye").on("click", function () {
+    const numbparpage = 7;
+
+    $.ajax({
+        url: "processing.php",
+        method: "POST",
+        data: $("#search_bar").serialize()+"&datatable="+$("#field").val(),
+        success: function (data) {
+            chargerDonnees(data);
+        },
+        complete: function () {
+                $(".eye").on("click", function () {
 
                     if ($("#field").val() === "TITRE DE CONGÉ ADMINISTRATIF") {
                         window.open(`../pdf?id=${$(this).attr('data-row')}`, "_blank");                   
@@ -163,8 +172,6 @@ $(document).ready(function(){
                 $(".trash").on("click", function (){
                     note = $(this).parent().parent().children().eq(1).text();
                     id_trash = $(this).data("row");
-
-                    
                 });
 
                 $(".fa-pencil").on("click", function () {
@@ -199,21 +206,10 @@ $(document).ready(function(){
                     });
 
                 });
-    };
-    const numbparpage = 4;
 
-    $.ajax({
-        url: "processing.php",
-        method: "POST",
-        data: $("#search_bar").serialize()+"&datatable="+$("#field").val(),
-        success: function (data) {
-            chargerDonnees(data);
-        },
-        complete: function () {
                 
-            oncecomplete();
-                
-        }
+            }
+
     });
 
     search.keyup(function (e) {
@@ -350,8 +346,6 @@ $(document).ready(function(){
                 $(".trash").on("click", function (){
                     note = $(this).parent().parent().children().eq(1).text();
                     id_trash = $(this).data("row");
-
-                    
                 });
 
                 $(".fa-pencil").on("click", function () {
@@ -372,6 +366,7 @@ $(document).ready(function(){
                         },
                         success: function(response){
                             // $("#staticBackdrop").addClass("d-none");
+                            alert("response");
                             $("#result").html(response);
                             $("#alert").addClass('alert-success');
                             $("#alert").removeClass('d-none');

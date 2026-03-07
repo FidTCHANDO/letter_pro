@@ -5,7 +5,7 @@ require_once("../datetotext.php");
 if (isset($_GET["id"])) {
 
     $order = $_GET["id"];
-    $pdfsql = $conn -> prepare("SELECT * FROM titredeconge WHERE id_acte = ?");
+    $pdfsql = $conn -> prepare("SELECT * FROM titredeconge WHERE numero = ?");
     $pdfsql -> bind_param("i", $order);
     $pdfsql -> execute();
     $result = $pdfsql -> get_result();
@@ -60,7 +60,7 @@ if (isset($_GET["id"])) {
             <div id="lineheightsmall">
                 <p>Adresse postale : BP 02 Azovè <br>Téléphone : +229 62 87 52 80 
                     <br>Email: <a href="mailto:ddscouffosante@yahoo.com">ddscouffosante@yahoo.com</a>
-                    <br>Site web: <a href="www.sante.gouv.bj">www.sante.gouv.bj</a>
+                    <br>Site web: <a href="http://www.sante.gouv.bj">www.sante.gouv.bj</a>
                 </p>
             </div>
             <!-- <div class="address_div">

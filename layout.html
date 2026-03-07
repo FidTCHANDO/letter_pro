@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestion des Congés Administratifs</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body {
+    background-color: #f4f6f9;
+}
+
+.sidebar {
+    height: 100vh;
+    background: #0d6efd;
+    color: white;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.content {
+    padding: 30px;
+}
+
+.card-custom {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+<body>
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- Sidebar -->
+<div class="col-md-2 sidebar p-3">
+    <h4>Administratif</h4>
+    <hr>
+    <a href="dashboard.html"><i class="bi bi-house"></i> Accueil</a>
+    <a href="demande.html"><i class="bi bi-pencil-square"></i> Demander un congé</a>
+    <a href="mes_conges.html"><i class="bi bi-calendar"></i> Mes congés</a>
+    <a href="historique.html"><i class="bi bi-clock-history"></i> Historique</a>
+    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+</div>
+
+<!-- Content -->
+<div class="col-md-10 content">
+    <h3>Bienvenue, Martin Dupont</h3>
+
+<div class="card card-custom p-3 mb-4">
+    <h5>Solde de congés administratifs</h5>
+    <h2 class="text-primary">8 jours restants</h2>
+</div>
+
+<div class="card card-custom p-3">
+    <h5>Demandes récentes</h5>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Période</th>
+                <th>Type</th>
+                <th>Durée</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>10/01/2026 - 12/01/2026</td>
+                <td>Formation</td>
+                <td>3 jours</td>
+                <td><span class="badge bg-success">Accepté</span></td>
+            </tr>
+            <tr>
+                <td>05/02/2026 - 07/02/2026</td>
+                <td>Mission</td>
+                <td>3 jours</td>
+                <td><span class="badge bg-warning">En attente</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

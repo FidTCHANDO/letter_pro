@@ -43,7 +43,7 @@ if (isset($_POST["id_trash"])) {
     }
     elseif (isset($_POST["type_doc"]) && $_POST["type_doc"] === "TITRE DE CONGÉ ADMINISTRATIF") {
         $id_ToDelete = check_input($_POST["id_trash"]);
-        $RmvQr1 = "DELETE FROM titredeconge WHERE id_acte = ?";
+        $RmvQr1 = "DELETE FROM titredeconge WHERE numero = ?";
         $rmvSQL1 = $conn -> prepare($RmvQr1);
         $rmvSQL1 -> bind_param("i", $id_ToDelete);
 

@@ -6,7 +6,7 @@
     };
     if (isset($_GET["pin"])) {
         $pin = check_input($_GET["pin"]);
-        $updt_con = $conn -> query("SELECT * FROM titredeconge WHERE id_acte = $pin");
+        $updt_con = $conn -> query("SELECT * FROM titredeconge WHERE numero = $pin");
         
         if ($updt_con -> num_rows == 1) {
             $updat_data = $updt_con -> fetch_assoc();
@@ -17,7 +17,7 @@
 ?> 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,79 +89,79 @@
                     <div class="row my-2">
                         <div class="form-group col-4">
                             <label for="reference"><strong>Référence</strong></label>
-                            <input class="form-control silver" type="text" name="reference" value = "<?php echo 'N°______/'.substr(date("Y"),-2).'/DDS-Cou/SPAF/SA' ?>" id="reference" required>
+                            <input class="form-control silver" type="text" name="reference" value = "<?php echo $updat_data["reference"] ?>" id="reference" required>
                             <small class="form-text text-muted">Laissez vide si correct</small>
                         </div>
 
                         <div class="form-group col-auto">
                             <label for="locationid"><strong>Lieu</strong></label>
-                            <input type="text" name="lieu" value = "Aplahoué, le" id="locationid" class="form-control silver" required>
+                            <input type="text" name="lieu" value = "<?php echo $updat_data["lieu"] ?>" id="locationid" class="form-control silver" required>
                             <small class="form-text text-muted">Laissez vide si correct</small>
                         </div>
 
                         <div class="form-group col-4">
                             <label for="type"><strong>Nom de l'acte</strong></label>
                             <select name="type" id="type" class="form-select form-select-md silver" required aria-label="Large select example">
-                                <option selected>TITRE DE CONGÉ ADMINISTRATIF</option>
+                                <option selected><?php echo $updat_data["typeacte"] ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="row my-2">
                         <div class="form-group col-6">
                             <label for="name_agent"><strong>Nom et prénoms de l'agent (*)</strong></label>
-                            <input type="text" name="name_agent" id="name_agent" class="form-control" required>
+                            <input type="text" name="name_agent" value = "<?php echo $updat_data["name_agent"] ?>" id="name_agent" class="form-control" required>
                             <!-- <small class="form-text text-muted">Laissez vide si correct</small> -->
                         </div>
                         <div class="form-group col-6">
                             <label for="fonction_agentid"><strong>Fonction de l'agent (*)</strong></label>
-                            <input type="text" name="fonction_agent" placeholder = "Ex: Chef Division... / Technicien... " id="fonction_agentid" class="form-control" required>
+                            <input type="text" name="fonction_agent" value = "<?php echo $updat_data["fonction_agent"] ?>" placeholder = "Ex: Chef Division... / Technicien... " id="fonction_agentid" class="form-control" required>
                         </div>
 
                     </div>
                     
                     <div class="form-group col-3 my-2">
                         <strong>Sexe :</strong>
-                        <input class="form-check-input" value="M" type="radio" name="sexe" id="M">
+                        <input class="form-check-input" value="M" type="radio" <?php if ($updat_data["sexe"] == "M") {echo "checked";} else { echo "";} ?> name="sexe" id="M">
                         <label class="form-check-label" for="M">M</label>
-                        <input class="form-check-input" value="F" type="radio" name="sexe" id="F">
+                        <input class="form-check-input" value="F" type="radio" <?php if ($updat_data["sexe"] == "F") {echo "checked";} else { echo "";} ?>name="sexe" id="F">
                         <label class="form-check-label" for="F">F</label>
                     </div>
                     
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="posteid"><strong>Poste de l'agent</strong> (en service à :)</label>
-                            <input type="text" name="poste" placeholder = "Ex: la Direction Départementale.../ l'Hopital..." id="posteid" class="form-control" required>
+                            <input type="text" name="poste" value = "<?php echo $updat_data["poste"] ?>" placeholder = "Ex: la Direction Départementale.../ l'Hopital..." id="posteid" class="form-control" required>
                         </div>
                         <div class="form-group col-4">
                             <label for="periodeid"><strong>Période des congés</strong></label>
-                            <input type="text" name="periode" placeholder = "Ex: d'un (01) mois/d'une (01) semaine/..." id="periodeid" class="form-control" required>
+                            <input type="text" name="periode" value = "<?php echo $updat_data["periode"] ?>" placeholder = "Ex: d'un (01) mois/d'une (01) semaine/..." id="periodeid" class="form-control" required>
                         </div>
                         <div class="form-group col-2">
                             <label for="anneeid"><strong>Année de compte</strong></label>
-                            <input type="number" name="annee" placeholder = "Ex: 2022/2023/etc." id="anneeid" class="form-control" max="<?php echo date("Y"); ?>" required>
+                            <input type="number" name="annee" value = "<?php echo $updat_data["annee"] ?>" placeholder = "Ex: 2022/2023/etc." id="anneeid" class="form-control" max="<?php echo date("Y"); ?>" required>
                         </div>
                     </div>
 
                     <div class="row my-2">
                         <div class="form-group col-2">
                             <label for="debutdateid"><strong>Date de début</strong></label>
-                            <input type="date" name="debutdate" id="debutdateid" class="form-control" required>
+                            <input type="date" name="debutdate" value = "<?php echo $updat_data["debutdate"] ?>" id="debutdateid" class="form-control" required>
                         </div>
                         <div class="form-group col-2">
                             <label for="retourdateid"><strong>Date de retour</strong></label>
-                            <input type="date" name="retourdate" id="retourdateid" class="form-control" required>
+                            <input type="date" name="retourdate" value = "<?php echo $updat_data["retourdate"] ?>" id="retourdateid" class="form-control" required>
                         </div>
                         <div class="form-group col-2">
                             <label for="heureretourid"><strong>Heure de retour</strong></label>
-                            <input type="time" name="heureretour" id="heureretourid" value="08:00" class="form-control silver" required>
+                            <input type="time" name="heureretour" value = "<?php echo $updat_data["heureretour"] ?>" id="heureretourid" value="08:00" class="form-control silver" required>
                         </div>
                         <div class="form-group col-3">
                             <label for="nomsignataireid"><strong>Nom du signataire</strong></label>
-                            <input type="text" name="nomsignataire" id="nomsignataireid" value="Dr Jean Yaovi DAHO" class="form-control silver" required>
+                            <input type="text" name="nomsignataire" value = "<?php echo $updat_data["nomsignataire"] ?>" id="nomsignataireid" value="Dr Jean Yaovi DAHO" class="form-control silver" required>
                         </div>
                         <div class="form-group col-3">
                             <label for="titresignataireid"><strong>Titre du signataire</strong></label>
-                            <input type="text" name="titresignataire" id="titresignataireid" value="Le Directeur" class="form-control silver" required>
+                            <input type="text" name="titresignataire" value = "<?php echo $updat_data["titresignataire"] ?>" id="titresignataireid" value="Le Directeur" class="form-control silver" required>
                         </div>
 
                     </div>

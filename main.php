@@ -121,7 +121,7 @@
         <div class="card col-md-3 dashcard shadow col-sm-4 bg-info rounded m-2 p-1">
             <div class="row m-0 card-header">
                 <div class="row">
-                    <span class="h1 text-white text-robot value" id="CountConge"><?php echo $titre['total']; ?></span>
+                    <span class="h1 text-white text-robot value" id="CountConge"><?php echo $titre['total'] > 9?$titre['total']: "0".$titre['total']; ?></span>
                     <br>
                 
                 </div>
@@ -163,7 +163,7 @@ CDN
     <script>
         
         $(document).ready(function(){
-            const numbparpage = 4;
+            const numbparpage = 7;
             let currentpage = 1;
             // let tousactes = [];
 
@@ -280,16 +280,19 @@ CDN
                 
             });
 
-            $.ajax({
-                url: "./useful/operations.php",
-                method: "post",
-                data: {"donnees": "titre"},
-                success: function (response) {
-                    $("#CountConge").animateNumber(response.donnees[0], 1000);
-                    $("#CountReplace").animateNumber(response.donnees[1], 1000);
+            $("#CountConge").animateNumber($("#CountConge").html(), 1000);
+            $("#CountReplace").animateNumber(100, 1000)
+            
+            // $.ajax({
+            //     url: "./useful/operations.php",
+            //     method: "post",
+            //     data: {"donnees": "titre"},
+            //     success: function (response) {
+            //         $("#CountConge").animateNumber(response.donnees[0], 1000);
+            //         $("#CountReplace").animateNumber(response.donnees[1], 1000);
                     
-                }
-            });
+            //     }
+            // });
 
         });
     </script>

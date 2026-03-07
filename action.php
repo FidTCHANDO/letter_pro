@@ -146,7 +146,7 @@
 
                         if ($addampli_sql -> execute()) {
                             if ($i == $inputCount) {
-                               echo "Le".$type." est créé avec succes";
+                               echo "LE ".$type." EST CREE AVEC SUCCES";
                             }
                         }
                         else {
@@ -155,7 +155,7 @@
                     };
                 }
                 else {
-                    echo "Le".$type." est créé avec succes";
+                    echo "LE ".$type." EST CREE AVEC SUCCES";
                 }
 
                 
