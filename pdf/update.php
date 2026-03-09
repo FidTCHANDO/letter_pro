@@ -181,19 +181,13 @@
                                 <input type="number" class="form-control" id="inputCount" value="0" name="inputCount" min="0" required>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-success" onclick="generateInputs()">Ajouter</button>
+                                <button type="button" class="btn btn-success" onclick="generateInputs($('#inputCount').val())" >Ajouter</button>
                             </div>
                             <div class="col-auto">
                                 <button type="button" class="btn btn-danger" onclick="clearInput()">Effacer</button>
                             </div>
                         </div>
                     </form>
-                    
-
-                    <!-- <div class="form-group form-check">
-                        <input type="checkbox" name="confirmer" id="id_keep" class="form-check-input">
-                        <label for="id_keep" class="form-check-label">Confirmer</label>
-                    </div> -->
                     
                     <div class="form-group mt-1">
                         <input type="submit" value="Enregistrer" id="enregistrer_btn" class="btn btn-block btn-primary">
@@ -222,9 +216,11 @@ CDN
     <!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script> -->
 
     <script>
-        function generateInputs() {
+        var get_rep = <?php echo json_encode($get_rep); ?>
+
+        function generateInputs(numberOfInputs) {
             // Get the number of inputs to generate
-            var numberOfInputs = document.getElementById('inputCount').value;
+            // var numberOfInputs = document.getElementById('inputCount').value;
             var inputsContainer = document.getElementById('inputsContainer');
             var ampliCount = document.getElementById('ampliCount');
             
@@ -237,16 +233,18 @@ CDN
                 var amplist = document.createElement('input');
                 amplist.type = 'text';
                 amplist.name = 'amplist' + (i + 1);
+                amplist.id = 'amplist' + (i + 1);
                 amplist.classList.add("form-control");
                 amplist.required = true;
-                amplist.placeholder = 'Structure/service...' + (i + 1);
+                amplist.placeholder = 'Structure/service ' + (i + 1);
 
                 var numamplist = document.createElement('input');
                 numamplist.type = 'number';
                 numamplist.name = 'numamplist' + (i + 1);
+                numamplist.id = 'numamplist' + (i + 1);
                 numamplist.classList.add("form-control");
                 numamplist.required = true;
-                numamplist.value = 1;
+                // numamplist.value = get_rep[i].numamplist;
                 // amplist.placeholder = 'Structure/service ' + (i + 1);
 
                 var divrow = document.createElement('div');
@@ -275,6 +273,17 @@ CDN
             document.getElementById('inputsContainer').innerHTML = "";
             
         }
+        $(document).ready(function() {
+            var ampliCount = get_rep.length;
+            generateInputs(ampliCount);
+            for (let i = 0; i < ampliCount; i++) {
+                $("#amplist"+(i+1)).val(get_rep[i]["amplist"]);
+                // alert(get_rep[i]["amplist"]);
+                $("#numamplist"+(i+1)).val(get_rep[i]["numamplist"]);
+            };
+
+            
+        });
     </script>
     <script src="../styles/myjquery.js"></script>
 </footer>
